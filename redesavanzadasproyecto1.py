@@ -20,7 +20,7 @@ def geolocalizar_ip(ip, token=None):
         return None
 
 # Solicita la IP al usuario
-ip_ingresada = input("Ingresa la dirección IP que deseas geolocalizar y ver si esta en una lista negra: ")
+ip_ingresada = input("Ingresa la dirección IP: ")
 token = "f523b9e976cf29"  # Si tienes un token de ipinfo.io, escríbelo aquí entre comillas
 
 # Llamada a la función
@@ -33,7 +33,9 @@ if info:
         print(f"{clave}: {valor}")
 
 
-#---------------------------------------------------------Fernando Amaro H---------------------------------------------------
+#--------------------------------------------------------Fernando Amaro H----------------------------------------------------
+
+
 
 
 # Listas negras DNS comunes
@@ -46,7 +48,7 @@ dnsbls = [
 
 def check_blacklist(ip):
     # Reversa la IP para la consulta DNSBL (formato requerido)
-    reversed_ip = ip_ingresada
+    reversed_ip = '.'.join(reversed(ip.split('.')))
 
     print(f"\nVerificando IP: {ip} en listas negras...\n")
 
@@ -62,7 +64,7 @@ def check_blacklist(ip):
             print(f"❓ Error consultando {dnsbl}: {e}")
 
 # Solicita al usuario una IP
-ip_input = input("Ingresa la dirección IP a verificar: ").strip()
+ip_input = ip_ingresada
 
 # Validación básica de IP
 import ipaddress
